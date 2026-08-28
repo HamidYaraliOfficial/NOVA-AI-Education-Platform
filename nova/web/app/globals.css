@@ -1,0 +1,152 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/*
+ * NOVA Fluent Design tokens.
+ * Four selectable themes, each following the Windows 11 Fluent language:
+ * mica-style layered surfaces, acrylic blur, 8px corner radius, Segoe-first type.
+ */
+
+:root {
+  --radius-win: 8px;
+}
+
+/* ---------- Light (Windows 11 Default) ---------- */
+.theme-light {
+  --background: 210 17% 95%;
+  --surface: 0 0% 100%;
+  --surface-2: 220 20% 98%;
+  --foreground: 220 14% 10%;
+  --muted: 220 14% 92%;
+  --muted-foreground: 220 8% 40%;
+  --border: 220 13% 88%;
+  --input: 220 13% 88%;
+  --ring: 206 100% 42%;
+  --primary: 206 100% 42%;       /* Windows 11 default blue #0078D4 */
+  --primary-foreground: 0 0% 100%;
+  --accent: 206 100% 42%;
+  --accent-foreground: 0 0% 100%;
+  --destructive: 4 78% 45%;
+  --destructive-foreground: 0 0% 100%;
+  --success: 122 39% 40%;
+  --warning: 38 92% 50%;
+  --acrylic-bg: 0 0% 100% / 0.72;
+}
+
+/* ---------- Dark ---------- */
+.theme-dark {
+  --background: 220 14% 10%;
+  --surface: 220 13% 14%;
+  --surface-2: 220 13% 17%;
+  --foreground: 0 0% 96%;
+  --muted: 220 12% 20%;
+  --muted-foreground: 220 8% 65%;
+  --border: 220 10% 24%;
+  --input: 220 10% 24%;
+  --ring: 202 100% 71%;
+  --primary: 202 100% 71%;       /* Windows 11 dark-mode accent #60CDFF */
+  --primary-foreground: 220 30% 10%;
+  --accent: 202 100% 71%;
+  --accent-foreground: 220 30% 10%;
+  --destructive: 4 90% 65%;
+  --destructive-foreground: 220 30% 10%;
+  --success: 122 45% 55%;
+  --warning: 38 92% 60%;
+  --acrylic-bg: 220 13% 14% / 0.6;
+}
+
+/* ---------- Red accent (Windows Red) ---------- */
+.theme-red {
+  --background: 8 60% 97%;
+  --surface: 0 0% 100%;
+  --surface-2: 8 45% 98%;
+  --foreground: 220 14% 10%;
+  --muted: 8 40% 94%;
+  --muted-foreground: 8 10% 40%;
+  --border: 8 30% 89%;
+  --input: 8 30% 89%;
+  --ring: 5 74% 44%;
+  --primary: 5 74% 44%;          /* Windows red #C42B1C */
+  --primary-foreground: 0 0% 100%;
+  --accent: 5 74% 44%;
+  --accent-foreground: 0 0% 100%;
+  --destructive: 5 74% 44%;
+  --destructive-foreground: 0 0% 100%;
+  --success: 122 39% 40%;
+  --warning: 38 92% 50%;
+  --acrylic-bg: 0 0% 100% / 0.72;
+}
+
+/* ---------- Deep Blue accent ---------- */
+.theme-blue {
+  --background: 208 60% 97%;
+  --surface: 0 0% 100%;
+  --surface-2: 208 45% 98%;
+  --foreground: 220 14% 10%;
+  --muted: 208 40% 93%;
+  --muted-foreground: 208 12% 38%;
+  --border: 208 30% 88%;
+  --input: 208 30% 88%;
+  --ring: 212 100% 28%;
+  --primary: 212 100% 28%;       /* Deep royal blue #004E8C */
+  --primary-foreground: 0 0% 100%;
+  --accent: 212 100% 28%;
+  --accent-foreground: 0 0% 100%;
+  --destructive: 4 78% 45%;
+  --destructive-foreground: 0 0% 100%;
+  --success: 122 39% 40%;
+  --warning: 38 92% 50%;
+  --acrylic-bg: 0 0% 100% / 0.72;
+}
+
+* { border-color: hsl(var(--border)); }
+
+html, body {
+  height: 100%;
+}
+
+body {
+  background: hsl(var(--background));
+  color: hsl(var(--foreground));
+  font-feature-settings: "cv11", "ss01";
+  transition: background-color .25s ease, color .25s ease;
+}
+
+html[dir="rtl"] body { font-family: var(--font-fa), "Vazirmatn", "Segoe UI", Tahoma, sans-serif; }
+html[lang="zh"] body { font-family: var(--font-zh), "Microsoft YaHei", "PingFang SC", sans-serif; }
+
+/* Fluent acrylic surface */
+.acrylic {
+  background-color: hsla(var(--acrylic-bg));
+  backdrop-filter: blur(24px) saturate(1.3);
+  -webkit-backdrop-filter: blur(24px) saturate(1.3);
+  border: 1px solid hsl(var(--border));
+}
+
+/* Mica-style ambient background used on shell/layout root */
+.mica {
+  background-image:
+    radial-gradient(1200px 600px at -10% -10%, hsl(var(--primary) / 0.10), transparent 60%),
+    radial-gradient(900px 500px at 110% 10%, hsl(var(--primary) / 0.08), transparent 55%);
+}
+
+.fluent-card {
+  background: hsl(var(--surface));
+  border: 1px solid hsl(var(--border));
+  border-radius: var(--radius-win);
+  box-shadow: 0 1px 2px rgba(0,0,0,.06), 0 4px 14px rgba(0,0,0,.05);
+}
+
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-thumb { background: hsl(var(--muted-foreground) / .35); border-radius: 999px; }
+::-webkit-scrollbar-track { background: transparent; }
+
+:focus-visible {
+  outline: 2px solid hsl(var(--ring));
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.001ms !important; transition-duration: 0.001ms !important; }
+}
